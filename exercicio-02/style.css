@@ -1,0 +1,106 @@
+/* Fonte externa */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--text);
+    transition: background-color 0.5s, color 0.5s;
+  }
+  
+  :root {
+    --background: #ffffff;
+    --text: #333333;
+    --task-bg: #f1f1f1;
+    --task-completed-bg: #d3ffd3;
+    --button-bg: #333;
+    --button-text: #fff;
+  }
+  
+  [data-theme="dark"] {
+    --background: #333333;
+    --text: #ffffff;
+    --task-bg: #555;
+    --task-completed-bg: #4caf50;
+    --button-bg: #555;
+  }
+  
+  header {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  #theme-toggle {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.5s, color 0.5s;
+  }
+  
+  .input-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 10px;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+  }
+  
+  #add-task {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s, color 0.5s;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  
+  li {
+    background-color: var(--task-bg);
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  li.completed {
+    background-color: var(--task-completed-bg);
+    text-decoration: line-through;
+  }
+  
+  button.complete, button.remove {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button.remove {
+    background-color: red;
+    color: white;
+  }
+  
+  button.complete {
+    background-color: green;
+    color: white;
+  }
+  

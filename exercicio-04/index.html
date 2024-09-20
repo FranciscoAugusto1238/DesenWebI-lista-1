@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Foto e Localização</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <h1>Capturar Foto e Localização</h1>
+    </header>
+
+    <section id="capture-section">
+        <div>
+            <button id="capture-button">Tirar Foto</button>
+            <input type="file" id="upload-input" accept="image/*" style="display: none;">
+        </div>
+        <video id="camera" autoplay></video>
+        <canvas id="photo-canvas" style="display:none;"></canvas>
+        <img id="photo-preview" alt="Foto capturada" style="display:none; max-width: 100%; border-radius: 8px;">
+    </section>
+
+    <section id="location-section">
+        <button id="location-button">Marcar Localização</button>
+        <input type="text" id="manual-location" placeholder="Informe manualmente (lat,lng)" style="display: none;">
+        <div id="map"></div>
+    </section>
+
+    <section id="info-section">
+        <label for="title">Título (obrigatório):</label>
+        <input type="text" id="title" required>
+        <label for="description">Descrição (opcional):</label>
+        <textarea id="description"></textarea>
+        <button id="save-button">Salvar Foto</button>
+    </section>
+
+    <section id="photo-list-section">
+        <h2>Fotos Capturadas</h2>
+        <table id="photo-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Localização</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <div id="modal" style="display: none;">
+        <div id="modal-content">
+            <span id="close-modal">&times;</span>
+            <h2>Detalhes da Foto</h2>
+            <img id="modal-photo" alt="Foto capturada" style="max-width: 100%; border-radius: 8px;">
+            <p id="modal-title"></p>
+            <p id="modal-description"></p>
+            <div id="modal-map" style="height: 300px;"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
