@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Carrinho de Compras</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="cart.html">Carrinho</a>
+            <a href="checkout.html">Checkout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cart">
+            <h2>Seus Produtos</h2>
+            <div id="cart-items"></div>
+            <h3>Total: R$ <span id="total-price">0</span></h3>
+            <button onclick="window.location.href='checkout.html'">Finalizar Compra</button>
+        </section>
+
+        <div id="remove-confirmation-modal" class="modal">
+            <div class="modal-content">
+                <p>Tem certeza que deseja remover este produto?</p>
+                <button id="confirm-remove">Sim</button>
+                <button onclick="closeModal()">Não</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Loja de Informática. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total-price');
+        const modal = document.getElementById('remove-confirmation-modal');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <h3>${item.name}</h3>
+                        <p>Quantidade: ${item.quantity}</p>
+                        <p>Preço: R$ ${item.price}</p>
+                        <button onclick="showRemoveModal(${index})">Remover</button>
+                    </div>
+                `;
+            });
+
+            totalPriceElement.textContent = total;
+        }
+
+        function showRemoveModal(index) {
+            modal.style.display = 'block';
+            document.getElementById('confirm-remove').onclick = function() {
+                removeFromCart(index);
+                closeModal();
+            };
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Produto</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="cart.html">Carrinho</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="product-details">
+            <img src="laptop.jpg" alt="Laptop Dell">
+            <h2>Laptop Dell Inspiron</h2>
+            <p>Preço: R$ 3.000,00</p>
+            <p>Descrição: Laptop com 8GB de RAM, processador Intel i7 e SSD de 512GB.</p>
+            <button onclick="addToCart()">Adicionar ao Carrinho</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Loja de Informática. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function addToCart() {
+            alert('Produto adicionado ao carrinho!');
+        }
+    </script>
+</body>
+</html>
+<script>
+    function addToCart() {
+        const product = {
+            name: "Laptop Dell Inspiron",
+            price: 3000,
+            quantity: 1
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Produto adicionado ao carrinho!');
+    }
+</script>
+
+

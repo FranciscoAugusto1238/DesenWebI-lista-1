@@ -1,0 +1,108 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Loja de Informática</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Checkout</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="cart.html">Carrinho</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Informações de Entrega</h2>
+        <form id="checkoutForm">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" name="endereco" required>
+
+            <label for="cartao">Número do Cartão</label>
+            <input type="text" id="cartao" name="cartao" required>
+
+            <button type="button" id="finalizarCompra">Finalizar Compra</button>
+        </form>
+
+        <div id="confirmModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <p>Tem certeza de que deseja finalizar a compra?</p>
+                <button id="confirmBtn">Sim, finalizar</button>
+                <button id="cancelBtn">Cancelar</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>&copy; 2024 Loja de Informática. Todos os direitos reservados.</p>
+            <p>Formas de pagamento: Cartão de crédito, Boleto, PayPal</p>
+            <p>Redes Sociais:
+                <a href="#">Facebook</a> |
+                <a href="#">Instagram</a> |
+                <a href="#">Twitter</a>
+            </p>
+        </div>
+    </footer>
+
+<form id="checkoutForm">
+    <label for="nome">Nome Completo</label>
+    <input type="text" id="nome" name="nome" required aria-required="true">
+    <span id="error-nome" class="error-message" aria-live="polite"></span>
+
+    <label for="endereco">Endereço</label>
+    <input type="text" id="endereco" name="endereco" required aria-required="true">
+    <span id="error-endereco" class="error-message" aria-live="polite"></span>
+
+    <label for="cartao">Número do Cartão</label>
+    <input type="text" id="cartao" name="cartao" required aria-required="true" aria-describedby="cartaoHelp">
+    <span id="error-cartao" class="error-message" aria-live="polite"></span>
+
+    <button type="button" id="finalizarCompra">Finalizar Compra</button>
+</form>
+
+<script>
+    const form = document.getElementById("checkoutForm");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let valid = true;
+
+        if (!form.nome.value) {
+            valid = false;
+            document.getElementById("error-nome").textContent = "Por favor, preencha o nome.";
+        } else {
+            document.getElementById("error-nome").textContent = "";
+        }
+
+        if (!form.endereco.value) {
+            valid = false;
+            document.getElementById("error-endereco").textContent = "Por favor, preencha o endereço.";
+        } else {
+            document.getElementById("error-endereco").textContent = "";
+        }
+
+        if (!form.cartao.value) {
+            valid = false;
+            document.getElementById("error-cartao").textContent = "Por favor, preencha o número do cartão.";
+        } else {
+            document.getElementById("error-cartao").textContent = "";
+        }
+
+        if (valid) {
+            modal.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>
